@@ -47,7 +47,44 @@ class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
 {{define "js"}}
     <script src="http://js.stripe.com/v3/"></script>
     <script>
+        let card;
+        let stripe;
+
+        stripe = Stripe('pk_test_51LVFnCLVulrgEUbxe6lmWnTAfPDYuvmsItvShKkLkxTwVaqqvg2Ne0cN4RMDx7nUrPuD8GXyqFohs4KXYbzP4bdT00Tzp6p9hZ')
+        
         function val() {
         }
+
+        (function() {
+            //create stripe and elements
+            const elements = stripe.elements();
+            const style = {
+                base: {
+                    fontSize: '16px',
+                    lineHeight: '24px'
+                }
+            }
+
+            //create card entry
+            card = elements.create('card', {
+                style: style,
+                hidePostalCode: false
+            });
+
+            card.mount("#card-element")
+
+            //check for input errors
+            card.addEventListener('change', function(event) {
+                var displayError = document.getElementById("card-errors");
+
+                if (event.error) {
+                    displayError.classList.remove('d-none');
+                    displayError.textContent = event.error.message;
+                } else {
+                    displayError.classList.add('d-none');
+                    displayError.textContent = '';
+                }
+            });
+        })();
     </script>
 {{end}}
