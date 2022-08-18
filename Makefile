@@ -1,5 +1,5 @@
-STRIPE_SECRET=sk_test_51LVFnCLVulrgEUbxK3M9womcVbkmfdiRuVbp0ayMo2qpRibl8dj5A11xADsG3WXMqIt9PGdIftF7gyBZKCJx9rQr00qGrPU6Xj
-STRIPE_KEY=pk_test_51LVFnCLVulrgEUbxe6lmWnTAfPDYuvmsItvShKkLkxTwVaqqvg2Ne0cN4RMDx7nUrPuD8GXyqFohs4KXYbzP4bdT00Tzp6p9hZ
+STRIPE_SECRET=pk_test_
+STRIPE_KEY=sk_test_
 GOSTRIPE_PORT=4000
 API_PORT=4001
 DSN=root@tcp(localhost:3306)/widgets?parseTime=true&tls=false

@@ -63,7 +63,7 @@ class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
         const payButton = document.getElementById("pay-button");
         const processing = document.getElementById("processing-payment");
 
-        stripe = Stripe('pk_test_')
+        stripe = Stripe({{.API}})
 
 
         function hidePaymentButton() {
@@ -120,7 +120,7 @@ class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
                 body: JSON.stringify(payload),
              }
 
-             fetch("http://localhost:4001/api/payment-intent", requestOptions)
+             fetch("{{index .SttringMap "publishable_key"}}/api/payment-intent", requestOptions)
              .then(response => response.text())
              .then(response => {
                 let data;
