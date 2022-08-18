@@ -19,12 +19,12 @@ class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
 
 <div class="mb-3">
     <label class="form-label" for="cardholder-name">Cardholder Name</label>
-    <input type="text" class="form-control" id="cardholder-nam" name="cardholder-nam" required="" autocomplete="cardholder-name-new"/>
+    <input type="text" class="form-control" id="cardholder-name" name="cardholder-name" required="" autocomplete="cardholder-name-new"/>
 </div>
 
 <div class="mb-3">
     <label class="form-label" for="cardholder-email">Cardholder Email</label>
-    <input type="email" class="form-control" id="cardholder-email" name="cardholder-email" required="" autocomplete="cardholder-email-new"/>
+    <input type="email" class="form-control" id="cardholder-email" name="email" required="" autocomplete="email-new"/>
 </div>
 
 
@@ -116,7 +116,8 @@ class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
                 headers: {
                     "Accept": "application/json",
                     "Content-type": "application/json"
-                }
+                },
+                body: JSON.stringify(payload),
              }
 
              fetch("http://localhost:4001/api/payment-intent", requestOptions)
@@ -125,9 +126,9 @@ class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
                 let data;
                 try {
                     data = JSON.parse(response);
-                    stripe.confirmCardPayment(data.client_secrete, {
+                    stripe.confirmCardPayment(data.client_secret, {
                         payment_method: {
-                            card: card, 
+                            card: card,
                             billing_details: {
                                 name: document.getElementById("cardholder-name").value,
                             }
@@ -144,6 +145,7 @@ class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
                                 document.getElementById("payment_currency").value = result.paymentIntent.currency;
                                 processing.classList.add("d-none");
                                 showCarSuccess();
+                                document.getElementById("charge_form").submit();
                             }
                         }
                     });

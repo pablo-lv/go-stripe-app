@@ -1,5 +1,5 @@
-STRIPE_SECRET=
-STRIPE_KEY=
+STRIPE_SECRET=sk_test_51LVFnCLVulrgEUbxK3M9womcVbkmfdiRuVbp0ayMo2qpRibl8dj5A11xADsG3WXMqIt9PGdIftF7gyBZKCJx9rQr00qGrPU6Xj
+STRIPE_KEY=pk_test_51LVFnCLVulrgEUbxe6lmWnTAfPDYuvmsItvShKkLkxTwVaqqvg2Ne0cN4RMDx7nUrPuD8GXyqFohs4KXYbzP4bdT00Tzp6p9hZ
 GOSTRIPE_PORT=4000
 API_PORT=4001
 DSN=root@tcp(localhost:3306)/widgets?parseTime=true&tls=false
@@ -39,7 +39,7 @@ start_front: build_front
 ## start_back: starts the back end
 start_back: build_back
 	@echo "Starting the back end..."
-	@env STRIPE_KEY=${STRIPE_KEY} STRIPE_SECRET=${STRIPE_SECRET} ./dist/gostripe_api -port=${API_PORT}  -dsn="${DSN}" &
+	@env STRIPE_KEY=${STRIPE_KEY} STRIPE_SECRET=${STRIPE_SECRET} ./dist/gostripe_api -port=${API_PORT} &
 	@echo "Back end running!"
 
 ## stop: stops the front and back end

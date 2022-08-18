@@ -33,7 +33,7 @@ func (c *Card) CreatePaymentIntent(currency string, amount int) (*stripe.Payment
 		Currency: stripe.String(currency),
 	}
 
-	params.AddMetadata("key", "value")
+	// params.AddMetadata("key", "value")
 
 	paymentIntent, err := paymentintent.New(params)
 
