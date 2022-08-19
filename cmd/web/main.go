@@ -45,7 +45,7 @@ func (app *application) serve() error {
 	}
 
 	app.infoLog.Printf("Starting HTTP server in %s mode on port %d", app.config.env, app.config.port)
-
+	app.infoLog.Println(app.config)
 	return srv.ListenAndServe()
 }
 
@@ -59,7 +59,7 @@ func main() {
 	flag.Parse()
 
 	cfg.stripe.key = os.Getenv("STRIPE_KEY")
-	cfg.stripe.key = os.Getenv("STRIPE_SECRET")
+	cfg.stripe.secret = os.Getenv("STRIPE_SECRET")
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stdout, "Error\t", log.Ldate|log.Ltime|log.Lshortfile)

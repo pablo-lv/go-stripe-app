@@ -3,7 +3,12 @@ package main
 import "net/http"
 
 func (app *application) VirtualTerminal(w http.ResponseWriter, r *http.Request) {
-	if err := app.renderTemplate(w, r, "terminal", nil); err != nil {
+	data := make(map[string]interface{})
+	data["publishable_key"] = app.config.stripe.key
+
+	if err := app.renderTemplate(w, r, "terminal", &templateData{
+		Data: data,
+	}); err != nil {
 		app.errorLog.Println(err)
 	}
 }

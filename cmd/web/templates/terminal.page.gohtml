@@ -8,7 +8,7 @@
 <h2 class="mt-3 text-center">Virtual Terminal</h2>
 <hr/>
 <div class="alert alert-danger text-center d-none" id="card-messages"></div>
-<form action="/payment-succeded" method="post"
+<form action="/payment-succeeded" method="post"
 name="charge_form" id="charge_form"
 class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
 
@@ -63,7 +63,7 @@ class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
         const payButton = document.getElementById("pay-button");
         const processing = document.getElementById("processing-payment");
 
-        stripe = Stripe({{.API}})
+        stripe = Stripe({{index .Data "publishable_key"}});
 
 
         function hidePaymentButton() {
@@ -120,7 +120,7 @@ class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
                 body: JSON.stringify(payload),
              }
 
-             fetch("{{index .SttringMap "publishable_key"}}/api/payment-intent", requestOptions)
+             fetch("{{.API}}/api/payment-intent", requestOptions)
              .then(response => response.text())
              .then(response => {
                 let data;
